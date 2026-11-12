@@ -1,0 +1,25 @@
+pai;codigo;descricao;quantidade;unidade;custo_unitario;perda_%
+;QDC-12;Quadro de distribuição 12 circuitos;1;un;180,00;
+QDC-12;CX-QD12;Caixa metálica de sobrepor 400x300x200;1;un;
+QDC-12;BAR-TRI;Conjunto barramento trifásico;1;un;45,00;
+QDC-12;DJ-MONO-20;Disjuntor monopolar 20 A curva C;12;un;18,90;
+QDC-12;DJ-TRI-63;Disjuntor geral tripolar 63 A;1;un;142,00;
+QDC-12;DPS-275;DPS 275 V 20 kA;3;un;54,50;
+QDC-12;CABO-10;Cabo flexível 10 mm² preto;6;m;9,80;10
+QDC-12;TERM-10;Terminal tubular 10 mm²;24;un;0,42;5
+QDC-12;ETQ;Etiqueta de identificação;14;un;0,35;10
+CX-QD12;CHAPA-14;Chapa aço carbono #14;1,35;m²;96,00;12
+CX-QD12;PORTA-PT;Porta com fecho e dobradiça;1;un;38,00;
+CX-QD12;TINTA-EP;Tinta epóxi pó RAL 7035;0,42;kg;48,00;15
+CX-QD12;PARAF-M6;Parafuso M6 x 16 zincado;8;un;0,28;
+BAR-TRI;BARRA-CU;Barra de cobre 1/2 x 1/8;1,8;m;72,00;5
+BAR-TRI;ISOL-EP;Isolador epóxi 30 mm;6;un;3,10;
+BAR-TRI;PARAF-M6;Parafuso M6 x 16 zincado;12;un;0,28;
+;GC-1000;Guarda-corpo metálico 1 m;1;un;95,00;
+GC-1000;MONT-GC;Montante tubo 40x40;2;un;22,00;
+GC-1000;TUBO-114;Tubo redondo 1 1/4 corrimão;1,05;m;34,50;8
+GC-1000;TUBO-34;Tubo redondo 3/4 travessa;3,15;m;18,20;8
+GC-1000;TINTA-EP;Tinta epóxi pó RAL 7035;0,35;kg;48,00;15
+MONT-GC;TUBO-40;Tubo quadrado 40x40 #16;1,1;m;29,90;6
+MONT-GC;SAPATA;Sapata com 4 furos;1;un;12,40;
+MONT-GC;PARAF-M6;Parafuso M6 x 16 zincado;4;un;0,28;

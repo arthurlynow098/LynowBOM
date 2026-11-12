@@ -1,0 +1,132 @@
+:root {
+  --papel: #edf1ee;
+  --folha: #f8faf8;
+  --tinta: #18211e;
+  --tinta-2: #4c5a54;
+  --linha: #a9b5af;
+  --linha-fina: #d3dbd6;
+  --marca: #14a06b;
+  --marca-escura: #0c7a51;
+  --alerta: #b9770e;
+  --erro: #b3261e;
+  --fonte: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font: 400 15px/1.5 var(--fonte);
+}
+.num, .qtd, .carimbo span, .carimbo strong { font-variant-numeric: tabular-nums; }
+
+h1, h2 { margin: 0 0 14px; font-weight: 700; letter-spacing: -0.01em; }
+h1 { font-size: 22px; }
+h2 { font-size: 17px; }
+
+.topo {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  max-width: 1240px; margin: 0 auto; padding: 22px 16px 14px;
+}
+.marca { font-size: 24px; font-weight: 800; color: var(--marca); text-decoration: none; letter-spacing: -0.02em; }
+.marca { display: inline-flex; align-items: center; gap: 10px; }
+.marca img { border-radius: 8px; }
+.marca span { color: var(--tinta); margin-right: -10px; }
+.acoes-topo { display: flex; align-items: center; gap: 18px; }
+.link { color: var(--tinta-2); }
+.link:hover { color: var(--tinta); }
+
+.botao {
+  display: inline-block; border: 1.5px solid var(--marca-escura); background: var(--marca); color: #fff;
+  font: 600 15px var(--fonte); padding: 10px 16px; border-radius: 6px; cursor: pointer;
+}
+.botao:hover { background: var(--marca-escura); }
+.botao.secundario { background: transparent; color: var(--marca-escura); }
+.botao.secundario:hover { background: #dcefe6; }
+:focus-visible { outline: 3px solid #f0b429; outline-offset: 2px; }
+
+.aviso {
+  max-width: 1208px; margin: 0 auto 12px; padding: 10px 14px; border-left: 4px solid var(--marca);
+  background: var(--folha);
+}
+.aviso.erro { border-color: var(--erro); }
+.aviso ul { margin: 6px 0 0; padding-left: 18px; }
+
+.folha {
+  max-width: 1208px; margin: 0 auto 40px; background: var(--folha);
+  border: 1.5px solid var(--tinta); padding: 28px;
+  display: grid; gap: 32px 40px;
+  grid-template-columns: minmax(260px, 320px) 1fr minmax(340px, 400px);
+  grid-template-areas:
+    "pedido estrutura estrutura"
+    "materiais materiais materiais"
+    "historico historico carimbo";
+}
+.pedido { grid-area: pedido; }
+.estrutura { grid-area: estrutura; min-width: 0; }
+.materiais { grid-area: materiais; min-width: 0; }
+.historico { grid-area: historico; min-width: 0; }
+.carimbo { grid-area: carimbo; }
+
+form { display: grid; gap: 12px; }
+label { display: grid; gap: 4px; font-size: 13px; font-weight: 600; color: var(--tinta-2); }
+input, select {
+  font: 400 15px var(--fonte); color: var(--tinta); background: #fff;
+  border: 1px solid var(--linha); border-radius: 4px; padding: 8px 10px; width: 100%;
+}
+.grade-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.vazio { color: var(--tinta-2); }
+
+.arvore { list-style: none; margin: 0; padding: 0; max-height: 360px; overflow: auto; border-top: 1px solid var(--linha-fina); }
+.arvore li {
+  display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 5px 0;
+  border-bottom: 1px solid var(--linha-fina); font-size: 14px;
+}
+.arvore .no { padding-left: calc(var(--nivel) * 22px); position: relative; }
+.arvore .no::before {
+  content: ""; position: absolute; left: calc(var(--nivel) * 22px - 14px); top: -6px;
+  width: 9px; height: 17px; border-left: 1px solid var(--linha); border-bottom: 1px solid var(--linha);
+}
+.arvore li[data-nivel="0"] .no::before { display: none; }
+.arvore .codigo { font-weight: 600; margin-right: 8px; }
+.arvore .montagem .codigo { color: var(--marca-escura); }
+.arvore .qtd { color: var(--tinta-2); }
+
+.rolagem { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font-weight: 600; color: var(--tinta-2); border-bottom: 1.5px solid var(--tinta); padding: 6px 8px; white-space: nowrap; }
+td { border-bottom: 1px solid var(--linha-fina); padding: 6px 8px; }
+.num { text-align: right; white-space: nowrap; }
+tbody tr.subtotal td { font-weight: 600; border-bottom: 1.5px solid var(--linha); }
+.avisos { color: var(--alerta); padding-left: 18px; margin: 10px 0 0; }
+
+/* Carimbo: o bloco de legenda de uma folha de desenho técnico. */
+.carimbo {
+  align-self: end;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border: 1.5px solid var(--tinta);
+  font-stretch: 75%;
+}
+.carimbo > div { border: 0.5px solid var(--tinta); padding: 6px 10px; min-height: 52px; display: grid; align-content: space-between; }
+.carimbo small { font-size: 11px; color: var(--tinta-2); font-stretch: 100%; }
+.carimbo span { font-size: 17px; }
+.carimbo .c-produto { grid-column: 1 / -1; }
+.carimbo .c-produto strong { font-size: 20px; font-weight: 700; }
+.carimbo .c-total { grid-column: 1 / -1; background: var(--tinta); color: var(--folha); }
+.carimbo .c-total small { color: #b8c4be; }
+.carimbo .c-total strong { font-size: 40px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+.carimbo .c-rodape { min-height: 44px; }
+.carimbo .c-rodape:last-child { grid-column: span 2; }
+.carimbo span#c-data { font-size: 15px; }
+
+.historico button { font: 600 13px var(--fonte); background: none; border: 0; color: var(--marca-escura); cursor: pointer; text-decoration: underline; padding: 0; }
+
+@media (max-width: 860px) {
+  .folha {
+    padding: 18px; grid-template-columns: 1fr;
+    grid-template-areas: "pedido" "carimbo" "estrutura" "materiais" "historico";
+  }
+}
+.historico a { color: var(--marca-escura); font-weight: 600; }

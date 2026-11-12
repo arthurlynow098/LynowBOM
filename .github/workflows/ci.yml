@@ -1,0 +1,23 @@
+name: CI do LynowBOM
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - name: Testes e empacotamento
+        run: mvn -B verify
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lynowbom-jar
+          path: target/lynowbom.jar
