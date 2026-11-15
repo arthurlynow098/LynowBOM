@@ -3,7 +3,7 @@
 ---
 
 <p align="center">
-  <img src="assets/lynowbom-banner.png" alt="LynowBOM" width="100%">
+  <img src="assets/banner.png" alt="LynowBOM" width="100%">
 </p>
 
 <p align="center">
@@ -19,7 +19,9 @@
 > [!TIP]
 > Quer ver funcionando sem instalar banco? Rode no perfil **demo** `mvn spring-boot:run -Dspring-boot.run.profiles=demo` e abra `http://localhost:8080`. Uma estrutura de exemplo já vem carregada.
 
-## Sobre o projeto
+<a id="sobre-o-projeto"></a>
+
+<p><img src="assets/secao-01.png" alt="Sobre o projeto" width="100%"></p>
 
 Em empresas de engenharia, a estrutura de um produto costuma viver numa planilha, um quadro elétrico leva uma caixa metálica, que leva chapa, porta e tinta. O mesmo parafuso aparece em três montagens diferentes. Cada material tem uma perda de corte ou de aplicação. Na hora de orçar 10 unidades, alguém multiplica tudo à mão, soma o que se repete, esquece um nível e descobre o erro depois do pedido fechado.
 
@@ -29,7 +31,9 @@ O LynowBOM transforma essa planilha em um configurador. Você importa o arquivo 
   <img src="assets/lynowbom-app.png" alt="Painel do LynowBOM com estrutura, lista de materiais e carimbo do orçamento" width="100%">
 </p>
 
-## Principais recursos
+<a id="principais-recursos"></a>
+
+<p><img src="assets/secao-02.png" alt="Principais recursos" width="100%"></p>
 
 | Recurso | Como funciona |
 |---|---|
@@ -43,7 +47,9 @@ O LynowBOM transforma essa planilha em um configurador. Você importa o arquivo 
 | Orçamento congelado | Cada orçamento guarda uma cópia das linhas e custos do momento da emissão. |
 | Exportação | Lista de materiais do orçamento em CSV pronto para abrir no Excel em português. |
 
-## Tecnologias
+<a id="tecnologias"></a>
+
+<p><img src="assets/secao-03.png" alt="Tecnologias" width="100%"></p>
 
 <p>
   <img alt="Java" src="https://img.shields.io/badge/Java_21-ED8B00?style=flat-square&logo=openjdk&logoColor=white">
@@ -75,7 +81,9 @@ O LynowBOM transforma essa planilha em um configurador. Você importa o arquivo 
 - **Dockerfile** em duas etapas (Maven → JRE) e **docker-compose** com MySQL e volume persistente
 - **GitHub Actions** compila, roda os testes e publica o `.jar` como artefato a cada push.
 
-## Arquitetura
+<a id="arquitetura"></a>
+
+<p><img src="assets/secao-04.png" alt="Arquitetura" width="100%"></p>
 
 ```mermaid
 flowchart LR
@@ -92,7 +100,9 @@ flowchart LR
 
 O pacote `core` não conhece Spring nem banco de dados, recebe linhas, monta a estrutura, explode e calcula. Os serviços apenas carregam do banco, chamam o núcleo e gravam o resultado. Isso deixa as regras de cálculo testáveis isoladamente e fáceis de reaproveitar em outro front-end.
 
-## Formato da planilha
+<a id="formato-da-planilha"></a>
+
+<p><img src="assets/secao-05.png" alt="Formato da planilha" width="100%"></p>
 
 A primeira linha é o cabeçalho. Linhas com `pai` vazio são os produtos. As demais dizem "este código entra neste pai, nesta quantidade".
 
@@ -107,7 +117,9 @@ Colunas obrigatórias `pai`, `codigo`, `descricao`, `quantidade`. O modelo compl
 
 Ao importar, as montagens presentes no arquivo têm sua estrutura **substituída**. As que não aparecem continuam como estavam. Assim dá para atualizar um conjunto sem reenviar o catálogo inteiro.
 
-## API
+<a id="api"></a>
+
+<p><img src="assets/secao-06.png" alt="API" width="100%"></p>
 
 | Método | Rota | Uso |
 |---|---|---|
@@ -127,7 +139,9 @@ curl -X POST http://localhost:8080/api/orcamentos \
   -d '{"produto":"QDC-12","quantidade":10,"cliente":"Cliente exemplo","margemPercentual":25,"impostosPercentual":18,"frete":150}'
 ```
 
-## Estrutura do repositório
+<a id="estrutura-do-repositório"></a>
+
+<p><img src="assets/secao-07.png" alt="Estrutura do repositório" width="100%"></p>
 
 ```text
 LynowBOM/
@@ -148,7 +162,9 @@ LynowBOM/
 └── PRODUTO.md                    Direção do produto e próximos passos
 ```
 
-## Executando o código
+<a id="executando-o-código"></a>
+
+<p><img src="assets/secao-08.png" alt="Executando o código" width="100%"></p>
 
 ### Demonstração (sem banco)
 
@@ -184,7 +200,9 @@ mvn verify
 
 Os testes do núcleo conferem a explosão, a consolidação, as perdas, a fórmula de preço e as validações. Os de integração sobem a aplicação no perfil demo e percorrem a API.
 
-## Decisões técnicas
+<a id="decisões-técnicas"></a>
+
+<p><img src="assets/secao-09.png" alt="Decisões técnicas" width="100%"></p>
 
 - **Núcleo sem framework.** O cálculo vive em `core` com tipos imutáveis, testado sem subir Spring nem banco.
 - **Validar tudo antes de gravar.** A estrutura do banco é combinada com a do arquivo e verificada inteira, inclusive ciclos entre arquivos diferentes, antes de qualquer `INSERT`.
@@ -192,13 +210,17 @@ Os testes do núcleo conferem a explosão, a consolidação, as perdas, a fórmu
 - **Planilha do jeito que existe.** Separador, codificação, vírgula decimal e cabeçalhos com acento são resolvidos pelo leitor, não pelo usuário.
 - **Impostos por dentro.** `preço = custo × (1 + margem) ÷ (1 − impostos)`, o que mantém o percentual de imposto correto sobre o valor final.
 
-## Estado atual
+<a id="estado-atual"></a>
+
+<p><img src="assets/secao-10.png" alt="Estado atual" width="100%"></p>
 
 Esta é a versão **0.1.0 alpha**. Importação, validação, explosão multinível, formação de preço, histórico e exportação em CSV estão implementados.
 
 Ainda não há autenticação nem controle de revisões da estrutura, a importação substitui a versão anterior de cada montagem. O esquema do banco é criado pelo Hibernate (`ddl-auto: update`). Para produção, o próximo passo é migrar para Flyway. Os próximos passos estão em [PRODUTO.md](PRODUTO.md).
 
-## Documentação
+<a id="documentação"></a>
+
+<p><img src="assets/secao-11.png" alt="Documentação" width="100%"></p>
 
 - [Direção do produto](PRODUTO.md)
 - [Núcleo de cálculo](src/main/java/com/arthurentsev/lynowbom/core)
@@ -206,7 +228,9 @@ Ainda não há autenticação nem controle de revisões da estrutura, a importa�
 - [Planilha de exemplo](src/main/resources/exemplos/estrutura-exemplo.csv)
 - [Identidade visual do banner](docs/BANNER.md)
 
-## Licença
+<a id="licença"></a>
+
+<p><img src="assets/secao-12.png" alt="Licença" width="100%"></p>
 
 Distribuído sob a [licença MIT](LICENSE).
 
