@@ -213,3 +213,5 @@ Distribuído sob a [licença MIT](LICENSE).
 ---
 
 <p align="center"><sub>Estudo · construção · evolução</sub><br><a href="https://github.com/arthurlynow098">Perfil</a> · <a href="https://arthurentsev.vercel.app/">Portfólio</a></p>
+
+<p align="center"><sub>A gravura do banner é o castor de Thomas Pennant, em domínio público no <a href="https://commons.wikimedia.org/wiki/File%3AThe_Beaver%2C_engraving.jpg">Wikimedia Commons</a>.</sub></p>
